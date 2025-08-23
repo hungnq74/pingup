@@ -137,7 +137,7 @@ export const followUser = async (req, res) => {
             return res.json ({success: false, message: 'You are already following this user'})
         }
 
-        user.following(id);
+        user.following.push(id);
         await user.save()
 
         const toUser = await User.findById(id)

@@ -92,7 +92,7 @@ export const getChatMessages = async (req, res) => {
             ]
         }).sort({created_at: -1})
 
-        //M Mark messages as seen
+        // Mark messages as seen
         await Message.updateMany({from_user_id: to_user_id, to_user_id: userId}, {seen: true})
 
         res.json({success: true, messages });
@@ -104,7 +104,7 @@ export const getChatMessages = async (req, res) => {
 export const getUserRecentMessages = async (req, res) => {
     try {
         const {userId} = req.auth();
-        const messages = await Message.find({to_user_id: userId}.populate('from_user_id to_user_id')).sort({created_at: -1});
+        const messages = await Message.find({to_user_id: userId}).populate('from_user_id to_user_id').sort({created_at: -1});
 
         res.json({success: true, messages });
     } catch (error) {
