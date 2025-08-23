@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import api from '../api/axios'
-import { addMessages, fetchMessages, resetMessages } from '../features/messages/messagesSlice.js'
+import { addMessage, fetchMessages, resetMessages } from '../features/messages/messagesSlice'
 import toast from 'react-hot-toast'
 
 const ChatBox = () => {
@@ -37,7 +37,7 @@ const ChatBox = () => {
 
       const token = await getToken()
       const formData = new FormData();
-      formData.append('to_user_id', userId);
+      formData.append('to_user_id', userId)
       formData.append('text', text);
       image && formData.append('image', image);
 
@@ -47,7 +47,7 @@ const ChatBox = () => {
       if (data.success) {
         setText('')
         setImage(null)
-        dispatch(addMessages(data.message))
+        dispatch(addMessage(data.message))
       }
       else{
         throw new Error(data.message)

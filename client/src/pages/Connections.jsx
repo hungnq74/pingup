@@ -43,7 +43,7 @@ const Connections = () => {
         toast(data.message)
       }
     } catch (error) {
-      toast.error(data.message)
+      toast.error(error.message)
     }
   }
 
@@ -60,7 +60,7 @@ const Connections = () => {
         toast(data.message)
       }
     } catch (error) {
-      toast.error(data.message)
+      toast.error(error.message)
     }
   }
 

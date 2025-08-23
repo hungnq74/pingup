@@ -20,7 +20,7 @@ const messagesSlice = createSlice({
         setMessages: (state, action)=> {
             state.messages = action.payload;
         },
-        addMessages: (state, action)=> {
+        addMessage: (state, action)=> {
             state.messages = [...state.messages, action.payload];
         },
         resetMessages: (state)=> {
@@ -30,12 +30,12 @@ const messagesSlice = createSlice({
     extraReducers: (builder)=>{
         builder.addCase(fetchMessages.fulfilled, (state, action)=> {
             if(action.payload){
-                state.payload = action.payload.messages
+                state.messages = action.payload.messages
             }
         })
     }
 })
 
-export const {setMessages, addMessages, resetMessages} = messagesSlice.actions;
+export const {setMessages, addMessage, resetMessages} = messagesSlice.actions;
 
 export default messagesSlice.reducer

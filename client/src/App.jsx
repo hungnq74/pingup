@@ -15,13 +15,13 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchUser } from './features/user/userSlice.js'
 import { fetchConnections } from './features/connections/connectionSlice.js'
-import { addMessages } from './features/messages/messagesSlice.js'
+import { addMessage } from './features/messages/messagesSlice.js'
 import Notification from './components/Notification.jsx'
 
 const App = () => {
   const { user } = useUser()
   const { getToken } = useAuth()
-  const pathname = useLocation()
+  const {pathname} = useLocation()
   const pathnameRef = useRef(pathname)
 
   const dispatch = useDispatch()
@@ -50,7 +50,7 @@ const App = () => {
         const message = JSON.parse(event.data)
 
         if(pathnameRef.current === ('/messages/' + message.from_user_id._id)){
-          dispatch(addMessages(message))
+          dispatch(addMessage(message))
         }
         else{
           toast.custom((t)=>(

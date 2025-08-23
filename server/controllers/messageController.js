@@ -11,8 +11,8 @@ export const sseController = (req, res) => {
     console.log('New client connected: ', userId)
 
     // Set SSE headers
-    res.setHeader('Content_Type', 'text/event-stream');
-    res.setHeader('Cache_Control', 'no-cache');
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
     res.setHeader('Access-Control-Allow-Origin', '*');
 
@@ -85,7 +85,7 @@ export const getChatMessages = async (req, res) => {
         const {userId} = req.auth();
         const {to_user_id} = req.body;
 
-        const messages = await Message.findById({
+        const messages = await Message.find({
             $or: [
                 {from_user_id: userId, to_user_id},
                 {from_user_id: to_user_id, to_user_id: userId},
